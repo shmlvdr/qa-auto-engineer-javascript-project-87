@@ -1,5 +1,8 @@
 #!/usr/bin/env node
-import { Command } from 'commander'
+import { Command } from 'commander';
+import path from 'path';
+import fs from 'fs';
+import gendiff from './src/index.js';
 
 const program = new Command();
 
@@ -8,12 +11,10 @@ program
   .version('1.0.0')
   .option('-f, --format <type>', 'output format')
   .description('Compares two configuration files and shows a difference.')
-    .argument('<filepath1')
-    .argument('<filepath2')
+    .argument('<filepath1>')
+    .argument('<filepath2>')
     .action((a, b, options) => {
-        console.log('a', a);
-        console.log('b', b);
-        console.log('options', options);
+        console.log(gendiff(a, b, options));
     });
 
 program.parse()
