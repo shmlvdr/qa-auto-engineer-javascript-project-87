@@ -1,4 +1,4 @@
-import gendiff from './src/index.js'
+import gendiff from '../src/index.js'
 import path from 'path';
 import fs from 'fs';
 
