@@ -1,33 +1,32 @@
-name: CI
+name: Node CI
 
-on: [push, pull_request]
+on:
+  - push
+  - pull_request
+
+env:
+  CI: true
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [22.x]
+
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '14'
-
-    - run: npm install
-
-    - name: Run Tests
-      run: npm test
-
-    - name: Run Lint
-      run: npm run lint
-
-    - name: SonarQube Scan
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: |
-        sonar-scanner \
-          -Dsonar.projectKey=shmlvdr_qa-auto-engineer-javascript-project-87 \
-          -Dsonar.organization=shmlvdr \
-          -Dsonar.sources=. \
-          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: make install
+      - run: make lint
+      - run: make test-coverage
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
