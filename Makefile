@@ -1,5 +1,8 @@
-lint:
-    npm run lint
-
 install:
-    npm install
+	npm install
+
+lint:
+	npm run lint
+
+test-coverage:
+	npm test -- --coverage
