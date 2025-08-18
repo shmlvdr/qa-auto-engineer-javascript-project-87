@@ -1,4 +1,5 @@
 ### Hexlet tests and linter status:
+
 [![Actions Status](https://github.com/shmlvdr/qa-auto-engineer-javascript-project-87/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/shmlvdr/qa-auto-engineer-javascript-project-87/actions)
 [![Actions Status](https://github.com/shmlvdr/qa-auto-engineer-javascript-project-87/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/shmlvdr/qa-auto-engineer-javascript-project-87/actions)
 ![CI](https://github.com/shmlvdr/qa-auto-engineer-javascript-project-87/actions/workflows/ci.yml/badge.svg)
@@ -8,46 +9,61 @@
 # Difference Calculator (QA Auto Engineer JavaScript Project 87)
 
 ## Description
+
 The diff calculator is a program that determines the difference between two data structures. This is a popular task, and there are many online services available for solving it, such as http://www.jsondiff.com/. This mechanism is used for testing purposes or for automatically tracking changes in configuration files.
 
- The utility's features include:
+The utility's features include:
 
 Support for different input formats, such as yaml and json
 Generation of a report in plain text, stylish, and json formats
 
 ## Requirements
+
 - **Node.js**: Version 14.x and above
 - **Operating system**: Windows, macOS or any Unix-like system
 
 ## Installation
+
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/shmlvdr/qa-auto-engineer-javascript-project-87.git
 
+   ```
+
 2. Go to the project directory:
-    ```bash
-    cd qa-auto-engineer-javascript-project-87
+
+   ```bash
+   cd qa-auto-engineer-javascript-project-87
+
+   ```
 
 3. Install the dependencies:
-    ```bash
-    npm install
+   ```bash
+   npm install
+   ```
 
 ## Difference Calculator:
 
 1. Comparing flat files (yml/yaml):
 
-    ```bash 
-    gendiff file1.yml file2.yml
+   ```bash
+   gendiff file1.yml file2.yml
+
+   ```
 
 2. Flat format:
 
-    ```bash 
-    gendiff --format plain file1.json file2.json
+   ```bash
+   gendiff --format plain file1.json file2.json
+
+   ```
 
 3. Output in JSON:
 
-    ```bash 
-    gendiff --format json file1.json file2.json
+   ```bash
+   gendiff --format json file1.json file2.json
+   ```
 
 Each command will run the corresponding comparison in your terminal.
 

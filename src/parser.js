@@ -1,13 +1,13 @@
-import yml from 'js-yaml';
+import yml from "js-yaml";
 
 export default (data, format) => {
-    if (format === 'json') {
+  if (format === "json") {
     return JSON.parse(data);
-}
+  }
 
-    if (format === 'yml') {
+  if (format === "yml") {
     return yml.load(data);
-}
+  }
 
-    throw Error('unknow format');
-}
+  throw Error("unknow format");
+};
