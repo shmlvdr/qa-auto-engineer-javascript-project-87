@@ -22,7 +22,7 @@ Generation of a report in plain text, stylish, and json formats
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/shmlvdr/qa-auto-engineer-javascript-project-44.git
+   git clone https://github.com/shmlvdr/qa-auto-engineer-javascript-project-87.git
 
 2. Go to the project directory:
     ```bash
@@ -32,7 +32,7 @@ Generation of a report in plain text, stylish, and json formats
     ```bash
     npm install
 
-## Launching games:
+## Difference Calculator:
 
 1. Comparing flat files (yml/yaml):
 
