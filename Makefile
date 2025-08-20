@@ -2,7 +2,7 @@ install:
 	npm install
 
 lint:
-	npm run lint
+	npx eslint .
 
 test-coverage:
 	npm test -- --coverage
