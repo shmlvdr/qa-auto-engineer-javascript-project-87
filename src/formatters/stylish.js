@@ -1,7 +1,7 @@
-const stylish = (diff) => {
-  const indentSize = 2;
-  const indent = " ";
+const indentSize = 2;
+const indent = " ";
 
+const stylish = (diff) => {
   const formatValue = (value, depth) => {
     if (typeof value !== "object" || value === null) {
       return String(value);
@@ -30,6 +30,8 @@ const stylish = (diff) => {
         return `${indentCurrent}- ${key}: ${formatValue(value1, 1)}\n${indentCurrent}+ ${key}: ${formatValue(value2, 1)}`;
       case "unchanged":
         return `${indentCurrent}  ${key}: ${formatValue(value, 1)}`;
+      case "nested": // Добавляем обработку nested
+        return `${indentCurrent}  ${key}: ${stylish(value, depth + 1)}`;
       default:
         return "";
     }
@@ -39,3 +41,4 @@ const stylish = (diff) => {
 };
 
 export default stylish;
+

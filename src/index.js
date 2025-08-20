@@ -25,7 +25,7 @@ export default (filepath1, filepath2, format = "stylish") => {
   const parsedData2 = parser(content2, format2);
   const diff = genDiff(parsedData1, parsedData2);
 
-  return formatters(diff, format);
+  return formatters[format](diff);
 };
 
 const genDiff = (obj1, obj2) => {
@@ -54,3 +54,4 @@ const genDiff = (obj1, obj2) => {
     return { type: "unchanged", key, value: obj1[key] };
   });
 };
+

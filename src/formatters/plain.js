@@ -12,7 +12,7 @@ const plain = (diff) => {
 
   const buildPlainDiff = (diff, parentPath = "") => {
     diff.forEach((node) => {
-      const { type, key, value, value1, value2 } = node;
+      const { type, key, value, value1, value2, children } = node;
       const currentPath = getPath(key, parentPath);
 
       switch (type) {
@@ -29,6 +29,9 @@ const plain = (diff) => {
             `Property '${currentPath}' was updated. From ${formatValue(value1)} to ${formatValue(value2)}`,
           );
           break;
+        case "nested":
+          buildPlainDiff(children, currentPath);
+          break;
       }
     });
   };
@@ -38,3 +41,4 @@ const plain = (diff) => {
 };
 
 export default plain;
+

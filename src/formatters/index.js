@@ -1,14 +1,11 @@
 import plain from './plain.js';
+import stylish from './stylish.js';
+import json from './json.js';
 
 const formatters = {
   plain,
-  // Вы можете добавить другие форматы, например, json, stylish и т.д.
+  stylish,
+  json,
 };
 
-export default (formatName) => {
-  const formatter = formatters[formatName];
-  if (!formatter) {
-    throw new Error(`Unknown format: ${formatName}`);
-  }
-  return formatter;
-};
+export default formatters;
