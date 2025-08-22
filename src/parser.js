@@ -1,13 +1,16 @@
-import yml from 'js-yaml'
+import yaml from 'js-yaml'
 
 export default (data, format) => {
-  if (format === 'json') {
-    return JSON.parse(data)
+  try {
+    if (format === 'json') {
+      return JSON.parse(data)
+    }
+    if (format === 'yml') {
+      return yaml.load(data)
+    }
+    throw new Error(`Unknown format: ${format}`)
   }
-
-  if (format === 'yml') {
-    return yml.load(data)
+  catch (e) {
+    throw new Error(`Error parsing data as ${format}: ${e.message}`)
   }
-
-  throw Error('unknow format')
 }

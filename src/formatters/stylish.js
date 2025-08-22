@@ -1,44 +1,74 @@
 const indentSize = 2
-const indent = ' '
-const depth = 0
+const indentChar = ' '
 
-const stylish = (diff) => {
-  const formatValue = (value, depth) => {
-    if (typeof value !== 'object' || value === null) {
-      return String(value)
-    }
-
-    const indentCurrent = indent.repeat(depth * indentSize + indentSize)
-    const indentClosing = indent.repeat(depth * indentSize)
-    const lines = Object.entries(value).map(
-      ([key, val]) =>
-        `${indentCurrent}  ${key}: ${formatValue(val, depth + 1)}`,
-    )
-
-    return `{\n${lines.join('\n')}\n${indentClosing}}`
+const formatValue = (value, depth) => {
+  if (typeof value !== 'object' || value === null) {
+    return String(value)
   }
 
-  const lines = diff.map((node) => {
-    const { type, key, value, value1, value2 } = node
-    const indentCurrent = indent.repeat(indentSize)
+  const currentIndent = indentChar.repeat(depth * indentSize)
+  const nextIndent = indentChar.repeat((depth + 1) * indentSize)
+  const lines = Object.entries(value).map(([key, val]) =>
+    `${nextIndent}${key}: ${formatValue(val, depth + 1)}`,
+  )
+
+  return `{\n${lines.join('\n')}\n${currentIndent}}`
+}
+
+const formatNode = (nodes, depth = 1) => {
+  const lines = []
+
+  nodes.forEach((node) => {
+    const { type, key, value, value1, value2, children } = node
+    const currentIndent = indentChar.repeat((depth - 1) * indentSize)
+    const signIndent = currentIndent + indentChar
 
     switch (type) {
       case 'added':
-        return `${indentCurrent}+ ${key}: ${formatValue(value, 1)}`
+        lines.push(
+          `${signIndent} + ${key}: ${formatValue(value, depth)}`,
+        )
+        break
       case 'removed':
-        return `${indentCurrent}- ${key}: ${formatValue(value, 1)}`
-      case 'changed':
-        return `${indentCurrent}- ${key}: ${formatValue(value1, 1)}\n${indentCurrent}+ ${key}: ${formatValue(value2, 1)}`
+        lines.push(
+          `${signIndent} - ${key}: ${formatValue(value, depth)}`,
+        )
+        break
       case 'unchanged':
-        return `${indentCurrent}  ${key}: ${formatValue(value, 1)}`
+        lines.push(
+          `${signIndent}   ${key}: ${formatValue(value, depth)}`,
+        )
+        break
+      case 'changed':
+        lines.push(
+          `${signIndent} - ${key}: ${formatValue(value1, depth)}`,
+        )
+        lines.push(
+          `${signIndent} + ${key}: ${formatValue(value2, depth)}`,
+        )
+        break
       case 'nested':
-        return `${indentCurrent}  ${key}: ${stylish(value, depth + 1)}`
+        lines.push(
+          `${signIndent}   ${key}: {`,
+        )
+        lines.push(formatNode(children, depth + 1))
+        lines.push(`${currentIndent}  }`)
+        break
       default:
-        return ''
+        break
     }
   })
 
-  return `{\n${lines.join('\n')}\n}`
+  return lines.join('\n')
+}
+
+const stylish = (diff) => {
+  const result = [
+    '{',
+    formatNode(diff),
+    '}',
+  ]
+  return result.join('\n')
 }
 
 export default stylish
