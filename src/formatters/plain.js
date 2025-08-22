@@ -1,44 +1,43 @@
 const plain = (diff) => {
   const formatValue = (value) => {
-    if (typeof value === "object" && value !== null) {
-      return "[complex value]";
+    if (typeof value === 'object' && value !== null) {
+      return '[complex value]'
     }
-    return typeof value === "string" ? `'${value}'` : String(value);
-  };
+    return typeof value === 'string' ? `'${value}'` : String(value)
+  }
 
-  const lines = [];
+  const lines = []
   const getPath = (key, parentPath) =>
-    parentPath ? `${parentPath}.${key}` : key;
+    parentPath ? `${parentPath}.${key}` : key
 
-  const buildPlainDiff = (diff, parentPath = "") => {
+  const buildPlainDiff = (diff, parentPath = '') => {
     diff.forEach((node) => {
-      const { type, key, value, value1, value2, children } = node;
-      const currentPath = getPath(key, parentPath);
+      const { type, key, value, value1, value2, children } = node
+      const currentPath = getPath(key, parentPath)
 
       switch (type) {
-        case "added":
+        case 'added':
           lines.push(
             `Property '${currentPath}' was added with value: ${formatValue(value)}`,
-          );
-          break;
-        case "removed":
-          lines.push(`Property '${currentPath}' was removed`);
-          break;
-        case "changed":
+          )
+          break
+        case 'removed':
+          lines.push(`Property '${currentPath}' was removed`)
+          break
+        case 'changed':
           lines.push(
             `Property '${currentPath}' was updated. From ${formatValue(value1)} to ${formatValue(value2)}`,
-          );
-          break;
-        case "nested":
-          buildPlainDiff(children, currentPath);
-          break;
+          )
+          break
+        case 'nested':
+          buildPlainDiff(children, currentPath)
+          break
       }
-    });
-  };
+    })
+  }
 
-  buildPlainDiff(diff);
-  return lines.join("\n");
-};
+  buildPlainDiff(diff)
+  return lines.join('\n')
+}
 
-export default plain;
-
+export default plain

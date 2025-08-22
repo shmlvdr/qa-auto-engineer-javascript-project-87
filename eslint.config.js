@@ -1,21 +1,16 @@
-import globals from 'globals';
-import js from '@eslint/js';
+import js from '@eslint/js'
+import globals from 'globals'
+import { defineConfig } from 'eslint/config'
+import stylistic from '@stylistic/eslint-plugin'
+import pluginJest from 'eslint-plugin-jest'
 
-export default [
+export default defineConfig([
+  stylistic.configs.recommended,
+  { files: ['**/*.{js,mjs,cjs}'], plugins: { js }, extends: ['js/recommended'] },
+  { files: ['**/*.{js,mjs,cjs}'], languageOptions: { globals: globals.node } },
   {
-    files: ['**/*.{js,mjs,cjs}'],
     languageOptions: {
-      ecmaVersion: 2021,
-      sourceType: 'module',
-      globals: {
-        ...globals.node,
-        ...globals.browser, 
-      },
-    },
-    plugins: {
-      js,
-    },
-    rules: {
+      globals: pluginJest.environments.globals.globals,
     },
   },
-];
+])
