@@ -1,5 +1,3 @@
-const json = (diff) => {
-  return JSON.stringify(diff, null, 2)
-}
+const json = data => JSON.stringify(data, null, 2)
 
 export default json

@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
-  "description": "[![Actions Status](https://github.com/shmlvdr/qa-auto-engineer-javascript-project-87/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/shmlvdr/qa-auto-engineer-javascript-project-87/actions)",
+  "description": "This project is a utility for counting the differences between data structures in JSON and YAML files. It supports three output formats: stylish, plain, and json. It is well-suited for automated testing and monitoring of changes in configuration files.",
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^14.0.0",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
