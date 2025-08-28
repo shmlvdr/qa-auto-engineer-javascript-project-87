@@ -1,4 +1,5 @@
 import yaml from 'js-yaml'
+import ini from 'ini'
 
 const parse = (data, format) => {
   switch (format) {
@@ -7,6 +8,8 @@ const parse = (data, format) => {
     case 'yaml':
     case 'yml':
       return yaml.load(data)
+    case 'ini':
+      return ini.parse(data)
     default:
       throw new Error(`Unsupported format: ${format}`)
   }

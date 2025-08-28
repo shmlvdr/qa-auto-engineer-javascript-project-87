@@ -47,21 +47,21 @@ Generation of a report in plain text, stylish, and json formats
 1. Comparing flat files (yml/yaml):
 
    ```bash
-   gendiff file1.yml file2.yml
+   gendiff __fixtures__/file1.yaml __fixtures__/file2.yaml
 
    ```
 
 2. Flat format:
 
    ```bash
-   gendiff --format plain file1.json file2.json
+   gendiff --format plain __fixtures__/file1.json __fixtures__/file2.json
 
    ```
 
 3. Output in JSON:
 
    ```bash
-   gendiff --format json file1.json file2.json
+   gendiff --format json __fixtures__/file1.json __fixtures__/file2.json
    ```
 
 Each command will run the corresponding comparison in your terminal.

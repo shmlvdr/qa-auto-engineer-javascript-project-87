@@ -9,11 +9,10 @@ import json from './formatters/json.js'
 import buildDiffTree from './buildDiffTree.js'
 
 const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename) // Директория, где находится index.js
+const __dirname = dirname(__filename)
 
 const getFileContent = (filepath) => {
   try {
-    // Строим абсолютный путь: от директории `index.js` к `__fixtures__` и далее к файлу
     const absolutePath = path.resolve(__dirname, '..', filepath)
     return fs.readFileSync(absolutePath, 'utf-8')
   }
@@ -25,10 +24,15 @@ const getFileContent = (filepath) => {
 
 const genDiff = (filepath1, filepath2, format = 'stylish') => {
   try {
-    const data1 = parse(getFileContent(filepath1), path.extname(filepath1).slice(1))
-    const data2 = parse(getFileContent(filepath2), path.extname(filepath2).slice(1))
-
+    const ext1 = path.extname(filepath1).slice(1)
+    const ext2 = path.extname(filepath2).slice(1)
+    const data1 = parse(getFileContent(filepath1), ext1)
+    const data2 = parse(getFileContent(filepath2), ext2)
     const diffTree = buildDiffTree(data1, data2)
+
+    if (format !== 'stylish' && format !== 'plain' && format !== 'json') {
+      throw new Error(`Unknown format: ${format}`)
+    }
 
     switch (format) {
       case 'stylish':
@@ -38,7 +42,7 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
       case 'json':
         return json(diffTree)
       default:
-        throw new Error(`Unknown format: ${format}`)
+        return stylish(diffTree)
     }
   }
   catch (error) {
