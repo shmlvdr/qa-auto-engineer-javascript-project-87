@@ -1,8 +1,0 @@
-{"version": 2, "width": 117, "height": 63, "timestamp": 1755504872, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
-[0.014803, "o", "\u001b[?2004h\u001b]0;root@DESKTOP-U4P88TD: /mnt/c/Users/Дарья/Desktop/qa-auto-engineer-javascript-project-87-main\u0007root@DESKTOP-U4P88TD:/mnt/c/Users/Дарья/Desktop/qa-auto-engineer-javascript-project-87-main# "]
-[7.577546, "o", "gendiff --format"]
-[7.578229, "o", " json file1.json file2.json"]
-[8.282974, "o", "\r\n\u001b[?2004l\r"]
-[8.580445, "o", "[\r\n  {\r\n    \"type\": \"removed\",\r\n    \"key\": \"follow\",\r\n    \"value\": false\r\n  },\r\n  {\r\n    \"type\": \"unchanged\",\r\n    \"key\": \"host\",\r\n    \"value\": \"hexlet.io\"\r\n  },\r\n  {\r\n    \"type\": \"removed\",\r\n    \"key\": \"proxy\",\r\n    \"value\": \"123.234.53.22\"\r\n  },\r\n  {\r\n    \"type\": \"changed\",\r\n    \"key\": \"timeout\",\r\n    \"value1\": 50,\r\n    \"value2\": 20\r\n  },\r\n  {\r\n    \"type\": \"added\",\r\n    \"key\": \"verbose\",\r\n    \"value\": true\r\n  }\r\n]\r\n"]
-[8.585747, "o", "\u001b[?2004h\u001b]0;root@DESKTOP-U4P88TD: /mnt/c/Users/Дарья/Desktop/qa-auto-engineer-javascript-project-87-main\u0007root@DESKTOP-U4P88TD:/mnt/c/Users/Дарья/Desktop/qa-auto-engineer-javascript-project-87-main# "]
-[11.174996, "o", "\u001b[?2004l\r\r\nexit\r\n"]

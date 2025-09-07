@@ -74,8 +74,8 @@ If you have any questions or problems, you can contact me by email: daria1807@gm
 
 You can view the feature demonstration in the links below.
 
-1. "Comparing flat files (yml/yaml)" [![asciicast](https://asciinema.org/a/dwDkQKA8U41QCqKhB5RBGqI7F.svg)](https://asciinema.org/a/dwDkQKA8U41QCqKhB5RBGqI7F)
+1. "Comparing flat files (yml/yaml)" [![asciicast](https://asciinema.org/a/FLyVYtHorcGO7GowZ4nLNsmbG.svg)](https://asciinema.org/a/FLyVYtHorcGO7GowZ4nLNsmbG)
 
-2. "Flat format" [![asciicast](https://asciinema.org/a/lrc3CSgUQT9EHVZBLT0brfhQ1.svg)](https://asciinema.org/a/lrc3CSgUQT9EHVZBLT0brfhQ1)
+2. "Flat format" [![asciicast](https://asciinema.org/a/fvyXNOM3VzMM0sACSk1WpM3Ou.svg)](https://asciinema.org/a/fvyXNOM3VzMM0sACSk1WpM3Ou)
 
-3. "Output in JSON" [![asciicast](https://asciinema.org/a/VthGQ7O5vfmqCKTz0gX539Q8I.svg)](https://asciinema.org/a/VthGQ7O5vfmqCKTz0gX539Q8I)
+3. "Output in JSON" [![asciicast](https://asciinema.org/a/gTlaUMZmPCbsrZZmCzPl79fsW.svg)](https://asciinema.org/a/gTlaUMZmPCbsrZZmCzPl79fsW)

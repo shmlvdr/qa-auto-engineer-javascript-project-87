@@ -14,12 +14,12 @@ const stringify = (value, depth) => {
   return `{\n${lines.join('\n')}\n${indent(depth + 1)}}`
 }
 
-const stylish = (diffTree) => {
+const formatStylish = (diffTree) => {
   const iter = (node, depth) => {
     const lines = node.map((item) => {
       switch (item.type) {
         case 'nested':
-          return `${indent(depth + 1)} ${item.key}: {\n${iter(item.children, depth + 2)}\n${indent(depth + 1)}}`
+          return `${indent(depth + 1)}  ${item.key}: {\n${iter(item.children, depth + 2)}\n${indent(depth + 1)}}`
         case 'added':
           return `${indent(depth)}+ ${item.key}: ${stringify(item.value, depth)}`
         case 'removed':
@@ -39,4 +39,4 @@ const stylish = (diffTree) => {
   return `{\n${iter(diffTree, 1)}\n}`
 }
 
-export default stylish
+export default formatStylish

@@ -10,7 +10,7 @@ const stringify = (value) => {
   return String(value)
 }
 
-const plain = (diffTree) => {
+const formatPlain = (diffTree) => {
   const iter = (node, path) => {
     const lines = node.flatMap((item) => {
       const currentPath = path ? `${path}.${item.key}` : item.key
@@ -37,4 +37,4 @@ const plain = (diffTree) => {
   return iter(diffTree, '').join('\n')
 }
 
-export default plain
+export default formatPlain

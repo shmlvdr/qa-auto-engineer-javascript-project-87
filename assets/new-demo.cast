@@ -1,9 +1,0 @@
-{"version": 2, "width": 117, "height": 63, "timestamp": 1755504116, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
-[0.014877, "o", "\u001b[?2004h\u001b]0;root@DESKTOP-U4P88TD: /mnt/c/Users/Дарья/Desktop/qa-auto-engineer-javascript-project-87-main\u0007root@DESKTOP-U4P88TD:/mnt/c/Users/Дарья/Desktop/qa-auto-engineer-javascript-project-87-main# "]
-[4.763452, "o", "gendiff --format"]
-[4.763987, "o", " plain file1.json file2."]
-[4.76436, "o", "json"]
-[6.362287, "o", "\r\n\u001b[?2004l\r"]
-[6.649297, "o", "Property 'follow' was removed\r\nProperty 'proxy' was removed\r\nProperty 'timeout' was updated. From 50 to 20\r\nProperty 'verbose' was added with value: true\r\n"]
-[6.655083, "o", "\u001b[?2004h\u001b]0;root@DESKTOP-U4P88TD: /mnt/c/Users/Дарья/Desktop/qa-auto-engineer-javascript-project-87-main\u0007root@DESKTOP-U4P88TD:/mnt/c/Users/Дарья/Desktop/qa-auto-engineer-javascript-project-87-main# "]
-[9.199254, "o", "\u001b[?2004l\r\r\nexit\r\n"]

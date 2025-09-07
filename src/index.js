@@ -3,51 +3,73 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 import parse from './parser.js'
-import stylish from './formatters/stylish.js'
-import plain from './formatters/plain.js'
-import json from './formatters/json.js'
 import buildDiffTree from './buildDiffTree.js'
+import { formatStylish, formatPlain, formatJson } from './formatters/index.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const getFileContent = (filepath) => {
-  try {
-    const absolutePath = path.resolve(__dirname, '..', filepath)
-    return fs.readFileSync(absolutePath, 'utf-8')
-  }
-  catch (error) {
-    console.error(`Error reading file: ${filepath}`)
-    throw error
+class FileNotFoundError extends Error {
+  constructor(filepath) {
+    super(`File not found: ${filepath}`)
+    this.name = 'FileNotFoundError'
   }
 }
 
-const genDiff = (filepath1, filepath2, format = 'stylish') => {
+class UnsupportedFormatError extends Error {
+  constructor(format) {
+    super(`Unsupported format: ${format}`)
+    this.name = 'UnsupportedFormatError'
+  }
+}
+
+class FileReadError extends Error {
+  constructor(filepath, message) {
+    super(`Error reading file ${filepath}: ${message}`)
+    this.name = 'FileReadError'
+  }
+}
+
+const getFileContent = (filepath) => {
+  const absolutePath = path.resolve(__dirname, '..', filepath)
+  if (!fs.existsSync(absolutePath)) {
+    throw new FileNotFoundError(filepath)
+  }
   try {
-    const ext1 = path.extname(filepath1).slice(1)
-    const ext2 = path.extname(filepath2).slice(1)
-    const data1 = parse(getFileContent(filepath1), ext1)
-    const data2 = parse(getFileContent(filepath2), ext2)
-    const diffTree = buildDiffTree(data1, data2)
-
-    if (format !== 'stylish' && format !== 'plain' && format !== 'json') {
-      throw new Error(`Unknown format: ${format}`)
-    }
-
-    switch (format) {
-      case 'stylish':
-        return stylish(diffTree)
-      case 'plain':
-        return plain(diffTree)
-      case 'json':
-        return json(diffTree)
-      default:
-        return stylish(diffTree)
-    }
+    const content = fs.readFileSync(absolutePath, 'utf-8')
+    const ext = path.extname(filepath).slice(1).toLowerCase()
+    return parse(content, ext)
   }
   catch (error) {
-    console.error('Произошла ошибка при обработке файлов:', error)
-    throw error
+    throw new FileReadError(filepath, error.message)
+  }
+}
+
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
+  try {
+    const data1 = getFileContent(filepath1)
+    const data2 = getFileContent(filepath2)
+    const diffTree = buildDiffTree(data1, data2)
+
+    const formatter = getFormatter(formatName)
+    return formatter(diffTree)
+  }
+  catch (error) {
+    console.error(`Error: ${error.message}`)
+    process.exit(1)
+  }
+}
+
+const getFormatter = (format) => {
+  switch (format) {
+    case 'stylish':
+      return formatStylish
+    case 'plain':
+      return formatPlain
+    case 'json':
+      return formatJson
+    default:
+      throw new UnsupportedFormatError(format)
   }
 }
 
