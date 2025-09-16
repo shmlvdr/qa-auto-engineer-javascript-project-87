@@ -26,7 +26,7 @@
     "prettier": "^3.6.2"
   },
   "bin": {
-    "gendiff": "/bin/gendiff.js"
+    "gendiff": "./bin/gendiff.js"
   },
   "jest": {
     "testEnvironment": "node",
