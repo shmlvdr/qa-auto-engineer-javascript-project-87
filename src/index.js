@@ -7,7 +7,7 @@ import format from './formatters/index.js'
 
 const getAbsolutePath = filepath => path.resolve(process.cwd(), filepath)
 const extractFormat = filepath => path.extname(filepath).slice(1).toLowerCase()
-const readData = filepath => {
+const readData = (filepath) => {
   const content = fs.readFileSync(getAbsolutePath(filepath), 'utf-8')
   return parse(content, extractFormat(filepath))
 }

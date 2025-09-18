@@ -10,12 +10,12 @@ const stringify = (value) => {
   return String(value)
 }
 
-const getPath = (path, key) => (path ? `${path}.${key}` : key);
+const getPath = (path, key) => (path ? `${path}.${key}` : key)
 
 const formatPlain = (diffTree) => {
   const iter = (node, path) => {
     const lines = node.flatMap((item) => {
-      const currentPath = getPath(path, item.key);
+      const currentPath = getPath(path, item.key)
 
       switch (item.type) {
         case 'nested':
