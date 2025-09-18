@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const indent = depth => '  '.repeat(depth)
+const indent = depth => ' '.repeat(depth * 2)
 
 const stringify = (value, depth) => {
   if (!_.isObject(value)) {
@@ -25,7 +25,7 @@ const formatStylish = (diffTree) => {
         case 'removed':
           return `${indent(depth)}- ${item.key}: ${stringify(item.value, depth)}`
         case 'changed':
-          return `${indent(depth)}- ${item.key}: ${stringify(item.oldValue, depth)}\n${indent(depth)}+ ${item.key}: ${stringify(item.newValue, depth)}`
+          return `${indent(depth)}- ${item.key}: ${stringify(item.value1, depth)}\n${indent(depth)}+ ${item.key}: ${stringify(item.value2, depth)}`
         case 'unchanged':
           return `${indent(depth)}  ${item.key}: ${stringify(item.value, depth)}`
         default:

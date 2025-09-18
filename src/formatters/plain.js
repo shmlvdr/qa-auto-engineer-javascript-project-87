@@ -10,10 +10,12 @@ const stringify = (value) => {
   return String(value)
 }
 
+const getPath = (path, key) => (path ? `${path}.${key}` : key);
+
 const formatPlain = (diffTree) => {
   const iter = (node, path) => {
     const lines = node.flatMap((item) => {
-      const currentPath = path ? `${path}.${item.key}` : item.key
+      const currentPath = getPath(path, item.key);
 
       switch (item.type) {
         case 'nested':
@@ -23,7 +25,7 @@ const formatPlain = (diffTree) => {
         case 'removed':
           return `Property '${currentPath}' was removed`
         case 'changed':
-          return `Property '${currentPath}' was updated. From ${stringify(item.oldValue)} to ${stringify(item.newValue)}`
+          return `Property '${currentPath}' was updated. From ${stringify(item.value1)} to ${stringify(item.value2)}`
         case 'unchanged':
           return []
         default:
